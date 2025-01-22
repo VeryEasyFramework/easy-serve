@@ -1,0 +1,17 @@
+{
+  "name": "@vef/easy-serve",
+  "version": "0.1.0",
+  "exports": "./mod.ts",
+  "publish": {
+    "exclude": [
+      ".github"
+    ]
+  },
+  "imports": {
+    "#/": "./src/",
+    "#extensions/": "./serverExtensions/"
+  },
+  "tasks": {
+    "dev": "deno run --allow-all --watch dev/main.ts"
+  }
+}

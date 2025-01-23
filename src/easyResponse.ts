@@ -1,4 +1,4 @@
-import type { HandlerResponse } from "./extension/pathHandler.ts";
+import type { HandlerResponse } from "#/extension/pathHandler.ts";
 
 export class EasyResponse {
   _content?: string | Uint8Array;

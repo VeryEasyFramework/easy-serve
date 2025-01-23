@@ -1,19 +1,19 @@
-import { EasyRequest } from "./easyRequest.ts";
-import { EasyResponse } from "./easyResponse.ts";
-import type { PathHandler } from "./extension/pathHandler.ts";
-import type { RequestExtension } from "./extension/requestExtension.ts";
-import { isServerException } from "./serverException.ts";
+import { EasyRequest } from "#/easyRequest.ts";
+import { EasyResponse } from "#/easyResponse.ts";
+import type { PathHandler } from "#/extension/pathHandler.ts";
+import type { RequestExtension } from "#/extension/requestExtension.ts";
+import { isServerException } from "#/serverException.ts";
 import type {
   ExtractInstallReturn,
   InstallFunction,
   ServerExtension,
   ServerExtensionInfo,
-} from "./extension/serverExtension.ts";
-import type { ServerMiddleware } from "./extension/serverMiddleware.ts";
+} from "#/extension/serverExtension.ts";
+import type { ServerMiddleware } from "#/extension/serverMiddleware.ts";
 import type { ServeConfig } from "./types.ts";
-import type { ConfigDefinition, ExtensionConfig } from "../../configEnv.ts";
-import { easyLog } from "../../easyLog/logging.ts";
-import { loadEasyConfigFile } from "./easyConfig/easyConfig.ts";
+import type { ConfigDefinition, ExtensionConfig } from "#/types.ts";
+import { loadEasyConfigFile } from "#/easyConfig/easyConfig.ts";
+import { easyLog } from "@vef/easy-log";
 
 /**
  * The main server class.
@@ -65,7 +65,7 @@ export class EasyServer {
 
   /**
    * The request extensions that have been added to the server.
-   * These are used to modify the InRequest object before it's used in further middleware or request handling.
+   * These are used to modify the EasyRequest object before it's used in further middleware or request handling.
    */
   private _requestExtensions: Map<string, RequestExtension> = new Map();
 
@@ -127,7 +127,7 @@ export class EasyServer {
     });
   }
   /**
-   * Adds an extension to the `InRequest` class.
+   * Adds an extension to the `EasyRequest` class.
    * This can be used to add custom functionality to the the request object
    * before it's used in further middleware or request handling.
    */
@@ -374,18 +374,22 @@ export class EasyServer {
   }
 
   private async _requestHandler(request: Request): Promise<Response> {
-    const inRequest = new EasyRequest(
+    const easyRequest = new EasyRequest(
       request,
     );
 
     for (const extension of this._requestExtensions.values()) {
-      extension.handler(inRequest);
+      extension.handler(easyRequest);
     }
 
-    const inResponse = new EasyResponse();
+    const easyResponse = new EasyResponse();
 
     for (const middleware of this._middlewares.values()) {
-      const response = await middleware.handler(this, inRequest, inResponse);
+      const response = await middleware.handler(
+        this,
+        easyRequest,
+        easyResponse,
+      );
       if (response instanceof EasyResponse) {
         return response.respond();
       }
@@ -394,11 +398,11 @@ export class EasyServer {
       }
     }
 
-    if (inRequest.method === "OPTIONS") {
-      return inResponse.respond();
+    if (easyRequest.method === "OPTIONS") {
+      return easyResponse.respond();
     }
 
-    const currentPath = inRequest.path;
+    const currentPath = easyRequest.path;
 
     let pathHandler: PathHandler | undefined = this._pathHandlers.get(
       currentPath,
@@ -416,27 +420,27 @@ export class EasyServer {
       try {
         const response = await pathHandler.handler(
           this,
-          inRequest,
-          inResponse,
+          easyRequest,
+          easyResponse,
         );
         if (response instanceof EasyResponse) {
           return response.respond();
         }
         if (response) {
-          inResponse.setContent(response);
+          easyResponse.setContent(response);
         }
       } catch (error) {
         if (isServerException(error)) {
-          return inResponse.error(error.message, error.status);
+          return easyResponse.error(error.message, error.status);
         }
         console.error(error);
-        return inResponse.error(
+        return easyResponse.error(
           "An error occurred while processing the request",
           500,
         );
       }
     }
-    return inResponse.respond();
+    return easyResponse.respond();
   }
   private serve(): Deno.HttpServer<Deno.NetAddr> {
     return Deno.serve(

@@ -1,7 +1,7 @@
-import type { EasyRequest } from "../easyRequest.ts";
+import type { EasyRequest } from "#/easyRequest.ts";
 
-import type { EasyResponse } from "../easyResponse.ts";
-import type { EasyServer } from "../easyServer.ts";
+import type { EasyResponse } from "#/easyResponse.ts";
+import type { EasyServer } from "#/easyServer.ts";
 export type ServerMiddleware = {
   /**
    * The name of the middleware.
@@ -19,8 +19,8 @@ export type ServerMiddleware = {
    */
   handler: (
     server: EasyServer,
-    inRequest: EasyRequest,
-    inResponse: EasyResponse,
+    easyRequest: EasyRequest,
+    easyResponse: EasyResponse,
   ) => Promise<void | EasyResponse | Response> | void | EasyResponse | Response;
 };
 

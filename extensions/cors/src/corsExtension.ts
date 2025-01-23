@@ -1,4 +1,4 @@
-import { createServerExtension } from "../../../mod.ts";
+import { createServerExtension } from "#/extension/serverExtension.ts";
 
 export const corsExtension = createServerExtension(
   {
@@ -16,13 +16,13 @@ export const corsExtension = createServerExtension(
     middleware: [{
       name: "CORS Middleware",
       description: "CORS Middleware for EasyServe",
-      handler(server, inRequest, inResponse) {
+      handler(server, easyRequest, easyResponse) {
         const origins = server.getExtensionConfigValue<Set<string>>(
           "CORS",
           "allowedOrigins",
         );
-        if (origins?.has(inRequest.origin)) {
-          inResponse.setAllowOrigin(inRequest.origin);
+        if (origins?.has(easyRequest.origin)) {
+          easyResponse.setAllowOrigin(easyRequest.origin);
         }
       },
     }],

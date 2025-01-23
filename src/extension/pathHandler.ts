@@ -1,6 +1,6 @@
-import type { EasyServer } from "../easyServer.ts";
-import type { EasyResponse } from "../easyResponse.ts";
-import type { EasyRequest } from "../easyRequest.ts";
+import type { EasyServer } from "#/easyServer.ts";
+import type { EasyResponse } from "#/easyResponse.ts";
+import type { EasyRequest } from "#/easyRequest.ts";
 
 export type HandlerResponse =
   | void
@@ -39,8 +39,8 @@ export type PathHandler = {
    */
   handler: (
     server: EasyServer,
-    inRequest: EasyRequest,
-    inResponse: EasyResponse,
+    easyRequest: EasyRequest,
+    easyResponse: EasyResponse,
   ) =>
     | Promise<HandlerResponse>
     | HandlerResponse;

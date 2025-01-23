@@ -16,11 +16,11 @@ const fileServerExtension = createServerExtension({
     path: "/(.*)",
     description: "Serve static files",
     name: "fileServer",
-    async handler(server, inRequest, inResponse) {
+    async handler(server, easyRequest, _easyResponse) {
       const fileServer = server.getCustomProperty<StaticFileHandler>(
         "fileServer",
       );
-      return await fileServer?.serveFile(inRequest.path);
+      return await fileServer?.serveFile(easyRequest.path);
     },
   }],
   install: (server) => {

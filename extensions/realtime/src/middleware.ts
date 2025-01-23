@@ -1,13 +1,12 @@
-import { createServerMiddleware } from "../../../mod.ts";
-import { RealtimeHandler } from "./realtimeHandler.ts";
-
+import type { RealtimeHandler } from "#realtime/src/realtimeHandler.ts";
+import { createServerMiddleware } from "#/extension/serverMiddleware.ts";
 export const realtimeMiddleware = createServerMiddleware({
   name: "Realtime Middleware",
-  description: "Realtime Middleware for  EastServe",
-  handler(server, inRequest) {
-    if (inRequest.upgradeSocket && inRequest.path === "/ws") {
+  description: "Realtime Middleware for EasyServe",
+  handler(server, easyRequest) {
+    if (easyRequest.upgradeSocket && easyRequest.path === "/ws") {
       const realtime = server.getCustomProperty<RealtimeHandler>("realtime");
-      return realtime?.handleUpgrade(inRequest);
+      return realtime?.handleUpgrade(easyRequest);
     }
   },
 });

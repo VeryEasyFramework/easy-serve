@@ -1,10 +1,8 @@
 /**
- * InRequest is a class that wraps the incoming request object and parses it,
+ * EasyRequest is a class that wraps the incoming request object and parses it,
  * providing a more convenient way to access the request properties.
  */
-
-import { easyLog } from "../../easyLog/logging.ts";
-
+import { easyLog } from "@vef/easy-log";
 export class EasyRequest {
   /**
    * A boolean indicating if the request is a websocket upgrade request.

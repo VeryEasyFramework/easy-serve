@@ -1,9 +1,9 @@
-import type { EasyRequest } from "../easyRequest.ts";
+import type { EasyRequest } from "#/easyRequest.ts";
 
 /**
- * An extension for the InRequest class.
- * This can be used to add custom functionality to the InRequest class.
- * It's called in the constructor of the InRequest class,
+ * An extension for the EasyRequest class.
+ * This can be used to add custom functionality to the EasyRequest class.
+ * It's called in the constructor of the EasyRequest class,
  * so it can be used to modify the request object before it's used in further middleware or request handling.
  */
 export type RequestExtension = {
@@ -20,8 +20,8 @@ export type RequestExtension = {
 
   /**
    * The handler for the extension.
-   * This is called in the constructor of the InRequest class.
-   * It receives the original request object and can modify the InRequest object as needed.
+   * This is called in the constructor of the EasyRequest class.
+   * It receives the original request object and can modify the EasyRequest object as needed.
    */
   handler: (request: EasyRequest) => void;
 };

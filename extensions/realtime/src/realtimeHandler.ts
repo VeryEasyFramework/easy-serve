@@ -71,10 +71,10 @@ export class RealtimeHandler {
   ) {
     this.roomHandlers.set(room, handler);
   }
-  handleUpgrade(inRequest: EasyRequest): Response {
-    if (inRequest.upgradeSocket) {
+  handleUpgrade(easyRequest: EasyRequest): Response {
+    if (easyRequest.upgradeSocket) {
       const { socket, response } = Deno.upgradeWebSocket(
-        inRequest.request,
+        easyRequest.request,
       );
       this.addClient(socket);
       return response;

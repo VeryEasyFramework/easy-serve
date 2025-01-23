@@ -36,7 +36,7 @@ export interface EasyAPIAction {
   handler: (
     data: Map<string, unknown>,
     server: EasyServer,
-    inRequest: EasyRequest,
-    inResponse: EasyResponse,
+    easyRequest: EasyRequest,
+    easyResponse: EasyResponse,
   ) => Promise<HandlerResponse> | HandlerResponse;
 }

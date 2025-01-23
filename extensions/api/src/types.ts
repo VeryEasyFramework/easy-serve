@@ -1,4 +1,4 @@
-import { EasyFieldType } from "../../../../easyOrm/src/ormTypes/easyField.ts";
+import { EasyFieldType } from "../../../../easy-orm/src/ormTypes/easyField.ts";
 import type { EasyRequest, EasyResponse, EasyServer } from "../../../mod.ts";
 import type { HandlerResponse } from "#/extension/pathHandler.ts";
 

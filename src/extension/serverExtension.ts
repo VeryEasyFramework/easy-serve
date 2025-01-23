@@ -2,8 +2,8 @@ import type { PathHandler } from "./pathHandler.ts";
 import type { RequestExtension } from "./requestExtension.ts";
 import type { EasyServer } from "../easyServer.ts";
 import type { ServerMiddleware } from "./serverMiddleware.ts";
-import type { ConfigDefinition } from "../../../configEnv.ts";
-import { camelToSnakeCase } from "../../../shared/stringUtils.ts";
+import type { ConfigDefinition } from "#/types.ts";
+import { camelToSnakeCase } from "@vef/easy-utils";
 
 export type InstallFunction<R = any> = (server: EasyServer) => R;
 

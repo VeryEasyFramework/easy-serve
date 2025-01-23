@@ -25,7 +25,7 @@ export type ServerMiddleware = {
 };
 
 /**
- * Creates a middleware for InSpatialServer.
+ * Creates a middleware for EasyServe.
  */
 export function createServerMiddleware(
   serverMiddleware: ServerMiddleware,

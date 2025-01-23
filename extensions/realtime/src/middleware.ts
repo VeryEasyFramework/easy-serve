@@ -3,7 +3,7 @@ import { RealtimeHandler } from "./realtimeHandler.ts";
 
 export const realtimeMiddleware = createServerMiddleware({
   name: "Realtime Middleware",
-  description: "Realtime Middleware for InSpatial Server",
+  description: "Realtime Middleware for  EastServe",
   handler(server, inRequest) {
     if (inRequest.upgradeSocket && inRequest.path === "/ws") {
       const realtime = server.getCustomProperty<RealtimeHandler>("realtime");

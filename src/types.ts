@@ -1,5 +1,5 @@
 /**
- * Configuration for the InSpatialServer.
+ * Configuration for EasyServe.
  */
 export interface ServeConfig {
   /**

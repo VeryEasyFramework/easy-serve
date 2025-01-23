@@ -1,7 +1,13 @@
 {
   "name": "@vef/easy-serve",
   "version": "0.1.0",
-  "exports": "./mod.ts",
+  "exports": {
+    ".": "./mod.ts",
+    "./realtime": "./extensions/realtime/mod.ts",
+    "./cors": "./extensions/cors/mod.ts",
+    "./api": "./extensions/api/mod.ts",
+    "./static": "./extensions/static/mod.ts"
+  },
   "publish": {
     "exclude": [
       ".github"
@@ -9,7 +15,11 @@
   },
   "imports": {
     "#/": "./src/",
-    "#extensions/": "./serverExtensions/"
+    "#extensions/": "./extensions/",
+    "#realtime/": "./extensions/realtime/",
+    "#cors/": "./extensions/cors/",
+    "#api/": "./extensions/api/",
+    "#static/": "./extensions/static/"
   },
   "tasks": {
     "dev": "deno run --allow-all --watch dev/main.ts"

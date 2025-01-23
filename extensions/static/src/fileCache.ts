@@ -1,6 +1,6 @@
 import { joinPath } from "../../../../shared/utils.ts";
-import { raiseServerException } from "../../../src/serverException.ts";
-import { inferMimeType, type MimeValue } from "./mimeTypes.ts";
+import { raiseServerException } from "#/serverException.ts";
+import { inferMimeType, type MimeValue } from "#static/src/mimeTypes.ts";
 
 export interface CachedFile {
   content: Uint8Array;

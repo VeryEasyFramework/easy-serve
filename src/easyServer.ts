@@ -10,7 +10,7 @@ import type {
   ServerExtensionInfo,
 } from "#/extension/serverExtension.ts";
 import type { ServerMiddleware } from "#/extension/serverMiddleware.ts";
-import type { ServeConfig } from "./types.ts";
+import type { ServeConfig } from "#/types.ts";
 import type { ConfigDefinition, ExtensionConfig } from "#/types.ts";
 import { loadEasyConfigFile } from "#/easyConfig/easyConfig.ts";
 import { easyLog } from "@vef/easy-log";

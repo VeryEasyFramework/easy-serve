@@ -1,4 +1,4 @@
-import { apiExtension } from "./src/apiExtension.ts";
+import { apiExtension } from "#extensions/api/src/apiExtension.ts";
 export { apiExtension };
 export { EasyAPI } from "#extensions/api/src/easyApi.ts";
 export type {

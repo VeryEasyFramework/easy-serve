@@ -1,5 +1,5 @@
-import { createServerExtension } from "../../../src/extension/serverExtension.ts";
-import { StaticFileHandler } from "./staticFileHandler.ts";
+import { createServerExtension } from "#/extension/serverExtension.ts";
+import { StaticFileHandler } from "#extensions/static/src/staticFileHandler.ts";
 
 const fileServerExtension = createServerExtension({
   name: "fileServer",

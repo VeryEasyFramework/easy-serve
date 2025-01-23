@@ -16,12 +16,9 @@
   "imports": {
     "#/": "./src/",
     "#extensions/": "./extensions/",
-    "#realtime/": "./extensions/realtime/",
-    "#cors/": "./extensions/cors/",
-    "#api/": "./extensions/api/",
-    "#static/": "./extensions/static/",
     "@vef/easy-log": "jsr:@vef/easy-log@^0.1.0",
-    "@vef/easy-utils": "jsr:@vef/easy-utils@^0.1.0"
+    "@vef/easy-utils": "jsr:@vef/easy-utils@^0.1.0",
+    "@vef/types": "jsr:@vef/types@^0.1.30"
   },
   "tasks": {
     "dev": "deno run --allow-all --watch dev/main.ts"

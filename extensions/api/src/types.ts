@@ -1,6 +1,8 @@
-import { EasyFieldType } from "../../../../easy-orm/src/ormTypes/easyField.ts";
-import type { EasyRequest, EasyResponse, EasyServer } from "../../../mod.ts";
 import type { HandlerResponse } from "#/extension/pathHandler.ts";
+import type { EasyResponse } from "#/easyResponse.ts";
+import type { EasyRequest } from "#/easyRequest.ts";
+import type { EasyServer } from "#/easyServer.ts";
+import type { EasyFieldType } from "@vef/types";
 
 export interface EasyAPIDocs extends Record<string, unknown> {
   groups: EasyAPIGroupDocs[];

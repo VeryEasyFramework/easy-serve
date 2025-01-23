@@ -1,5 +1,5 @@
-import { FileCache } from "./fileCache.ts";
-import { inferMimeType } from "./mimeTypes.ts";
+import { FileCache } from "#extensions/static/src/fileCache.ts";
+import { inferMimeType } from "#extensions/static/src/mimeTypes.ts";
 
 /**
  * Options for the static files handler

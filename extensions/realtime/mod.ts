@@ -1,7 +1,7 @@
-import { realtimeExtension } from "./src/extension.ts";
+import { realtimeExtension } from "#extensions/realtime/src/extension.ts";
 
-export { RealtimeHandler } from "./src/realtimeHandler.ts";
-export { realtimeExtension } from "./src/extension.ts";
-export { realtimeMiddleware } from "./src/middleware.ts";
+export { RealtimeHandler } from "#extensions/realtime/src/realtimeHandler.ts";
+export { realtimeExtension };
+export { realtimeMiddleware } from "#extensions/realtime/src/middleware.ts";
 
 export default realtimeExtension;

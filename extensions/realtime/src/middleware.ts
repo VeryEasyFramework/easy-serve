@@ -1,4 +1,4 @@
-import type { RealtimeHandler } from "#realtime/src/realtimeHandler.ts";
+import type { RealtimeHandler } from "#extensions/realtime/src/realtimeHandler.ts";
 import { createServerMiddleware } from "#/extension/serverMiddleware.ts";
 export const realtimeMiddleware = createServerMiddleware({
   name: "Realtime Middleware",

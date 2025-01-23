@@ -1,5 +1,6 @@
-import { type PathHandler, raiseServerException } from "../../../mod.ts";
-import type { EasyAPI } from "./easyApi.ts";
+import type { PathHandler } from "#/extension/pathHandler.ts";
+import type { EasyAPI } from "#extensions/api/src/easyApi.ts";
+import { raiseServerException } from "#/serverException.ts";
 
 export const apiHandler: PathHandler = {
   name: "api",

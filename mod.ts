@@ -15,7 +15,7 @@ export {
 } from "#/serverException.ts";
 export * from "#extensions/api/mod.ts";
 export * from "#extensions/cors/mod.ts";
-export * from "#realtime/mod.ts";
+export * from "#extensions/realtime/mod.ts";
 export type { PathHandler } from "#/extension/pathHandler.ts";
 export {
   createServerMiddleware,

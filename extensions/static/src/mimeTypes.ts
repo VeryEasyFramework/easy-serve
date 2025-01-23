@@ -1,4 +1,4 @@
-import { raiseServerException } from "../../../src/serverException.ts";
+import { raiseServerException } from "#/serverException.ts";
 
 export interface MimeTypesMap {
   html: "text/html";

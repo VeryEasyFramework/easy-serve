@@ -69,6 +69,10 @@ export class EasyServer {
    */
   private _requestExtensions: Map<string, RequestExtension> = new Map();
 
+  private get _defaultPathHandler(): ServerMiddleware | undefined {
+    return this._config?.defaultPathHandler;
+  }
+
   private _middlewares: Map<string, ServerMiddleware> = new Map();
   private _pathHandlers: Map<string, PathHandler> = new Map();
 
@@ -416,6 +420,21 @@ export class EasyServer {
         }
       }
     }
+
+    if (!pathHandler && this._defaultPathHandler) {
+      const response = this._defaultPathHandler.handler(
+        this,
+        easyRequest,
+        easyResponse,
+      );
+      if (response instanceof EasyResponse) {
+        return response.respond();
+      }
+      if (response instanceof Response) {
+        return response;
+      }
+    }
+
     if (pathHandler) {
       try {
         const response = await pathHandler.handler(

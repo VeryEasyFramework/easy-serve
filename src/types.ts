@@ -1,3 +1,5 @@
+import { PathHandler, ServerMiddleware } from "../mod.ts";
+
 /**
  * Configuration for EasyServe.
  */
@@ -19,6 +21,8 @@ export interface ServeConfig {
    * `8080`
    */
   port?: number;
+
+  defaultPathHandler?: ServerMiddleware;
 }
 
 export type ConfigEnv<

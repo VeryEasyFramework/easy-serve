@@ -1,5 +1,5 @@
-import { joinPath } from "../../../shared/utils.ts";
-import { EasyServer } from "../easyServer.ts";
+import type { EasyServer } from "#/easyServer.ts";
+import { joinPath } from "@vef/easy-utils";
 
 export async function loadEasyConfigFile(): Promise<
   Record<string, any> | undefined

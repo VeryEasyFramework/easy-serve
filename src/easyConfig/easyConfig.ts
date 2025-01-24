@@ -1,4 +1,4 @@
-import type { EasyServer } from "#/easyServer.ts";
+import type { EasyServe } from "../easyServe.ts";
 import { joinPath } from "@vef/easy-utils";
 
 export async function loadEasyConfigFile(): Promise<
@@ -17,13 +17,15 @@ export async function loadEasyConfigFile(): Promise<
       }
     }
   } catch (e) {
-    console.error(e);
-    return undefined;
+    if (e instanceof Deno.errors.NotFound) {
+      console.log("No easyConfig.json found");
+      return undefined;
+    }
+    throw e;
   }
 }
 
-export async function generateEasyConfigFile(server: EasyServer) {
-  await server.initialized;
+export async function generateEasyConfigFile(server: EasyServe) {
   const filePath = joinPath(Deno.cwd(), "_easyConfig.json");
   const masterConfig = new Map<string, any>();
   server.installedExtensions.forEach((extension) => {

@@ -1,11 +1,11 @@
-import { EasyServer } from "#/easyServer.ts";
+import { EasyServe } from "./src/easyServe.ts";
 
 export {
   createServerExtension,
   type ServerExtension,
-} from "#/extension/serverExtension.ts";
+} from "./src/extension/serverExtensionBak.ts";
 
-export { EasyServer } from "#/easyServer.ts";
+export { EasyServe } from "./src/easyServe.ts";
 export { EasyRequest } from "#/easyRequest.ts";
 export { EasyResponse } from "#/easyResponse.ts";
 export {
@@ -23,4 +23,4 @@ export {
 } from "#/extension/serverMiddleware.ts";
 export type { RequestExtension } from "#/extension/requestExtension.ts";
 export type { ServeConfig } from "#/types.ts";
-export default EasyServer;
+export default EasyServe;

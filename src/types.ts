@@ -1,9 +1,14 @@
-import { PathHandler, ServerMiddleware } from "../mod.ts";
+import type { ServerMiddleware } from "../mod.ts";
+import type EasyExtension from "#/easyExtension.ts";
 
 /**
  * Configuration for EasyServe.
  */
-export interface ServeConfig {
+export interface ServeConfig<
+  EL extends Array<EasyExtension<string, any>> = Array<
+    EasyExtension<string, any>
+  >,
+> {
   /**
    * The hostname to listen on.
    * If not provided, the server will listen on all available interfaces.
@@ -21,6 +26,10 @@ export interface ServeConfig {
    * `8080`
    */
   port?: number;
+
+  extensions: EL extends Array<EasyExtension<infer N, infer R>>
+    ? Array<EasyExtension<N, R>>
+    : EL;
 
   defaultPathHandler?: ServerMiddleware;
 }

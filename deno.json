@@ -20,6 +20,7 @@
     "@vef/easy-utils": "jsr:@vef/easy-utils@^0.1.0",
     "@vef/types": "jsr:@vef/types@^0.1.30"
   },
+  "unstable": ["broadcast-channel"],
   "tasks": {
     "check": "deno publish --dry-run"
   }

@@ -1,6 +1,7 @@
 import type { RealtimeHandler } from "#extensions/realtime/src/realtimeHandler.ts";
 import { createServerMiddleware } from "#/extension/serverMiddleware.ts";
-export const realtimeMiddleware = createServerMiddleware({
+import type { ServerMiddleware } from "#/extension/serverMiddleware.ts";
+export const realtimeMiddleware: ServerMiddleware = createServerMiddleware({
   name: "Realtime Middleware",
   description: "Realtime Middleware for EasyServe",
   handler(server, easyRequest) {

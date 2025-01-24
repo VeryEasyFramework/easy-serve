@@ -1,11 +1,11 @@
 import type { PathHandler } from "#/extension/pathHandler.ts";
 import type { RequestExtension } from "#/extension/requestExtension.ts";
-import type { EasyServer } from "#/easyServer.ts";
+import type { EasyServe } from "../easyServe.ts";
 import type { ServerMiddleware } from "#/extension/serverMiddleware.ts";
 import type { ConfigDefinition } from "#/types.ts";
 import { camelToSnakeCase } from "@vef/easy-utils";
 
-export type InstallFunction<R = any> = (server: EasyServer) => R;
+export type InstallFunction<R = any> = (server: EasyServe) => R;
 
 export type ExtractInstallReturn<I extends InstallFunction> = I extends
   InstallFunction<infer R> ? R : never;

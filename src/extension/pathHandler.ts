@@ -1,4 +1,4 @@
-import type { EasyServer } from "#/easyServer.ts";
+import type { EasyServe } from "../easyServe.ts";
 import type { EasyResponse } from "#/easyResponse.ts";
 import type { EasyRequest } from "#/easyRequest.ts";
 
@@ -38,7 +38,7 @@ export type PathHandler = {
    * If the handler returns a response, the response will be sent to the client as-is.
    */
   handler: (
-    server: EasyServer,
+    server: EasyServe,
     easyRequest: EasyRequest,
     easyResponse: EasyResponse,
   ) =>

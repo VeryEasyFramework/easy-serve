@@ -3,17 +3,13 @@ import { EasyResponse } from "#/easyResponse.ts";
 import type { PathHandler } from "#/extension/pathHandler.ts";
 import type { RequestExtension } from "#/extension/requestExtension.ts";
 import { isServerException } from "#/serverException.ts";
-import type {
-  ExtractInstallReturn,
-  InstallFunction,
-  ServerExtension,
-  ServerExtensionInfo,
-} from "#/extension/serverExtension.ts";
+import type { ExtensionMap, ServerExtensionInfo } from "#/extension/types.ts";
 import type { ServerMiddleware } from "#/extension/serverMiddleware.ts";
 import type { ServeConfig } from "#/types.ts";
 import type { ConfigDefinition, ExtensionConfig } from "#/types.ts";
 import { loadEasyConfigFile } from "#/easyConfig/easyConfig.ts";
 import { easyLog } from "@vef/easy-log";
+import EasyExtension from "#/easyExtension.ts";
 
 /**
  * The main server class.
@@ -29,7 +25,9 @@ import { easyLog } from "@vef/easy-log";
  * ```
  */
 
-export class EasyServer {
+export class EasyServe<
+  C extends ServeConfig = ServeConfig,
+> {
   /**
    * This fetch method is not intended to be called directly. It's purpose is so that the EasyServer instance can be exported as the default
    * and the `deno serve` command can be used to run the server.
@@ -78,15 +76,19 @@ export class EasyServer {
 
   private _customProperties: Map<string, unknown> = new Map();
 
+  private _extensions: Map<
+    string,
+    any
+  > = new Map();
+
   private _extensionsConfig: Map<string, Map<string, any>> = new Map();
 
   private _config: ServeConfig = {
     hostname: undefined,
     port: undefined,
+    extensions: [],
   };
   private _installedExtensions: Set<any> = new Set();
-
-  readonly initialized: Promise<void>;
 
   /**
    * The installed extensions that have been added to the server.
@@ -112,7 +114,23 @@ export class EasyServer {
   getCustomProperty<T>(key: string): T | undefined {
     return this._customProperties.get(key) as T;
   }
-  constructor(config?: ServeConfig) {
+
+  static async create<
+    C extends ServeConfig,
+  >(
+    config: C extends ServeConfig<infer EL> ? C : ServeConfig,
+  ): Promise<
+    EasyServe<C>
+  > {
+    await loadEasyConfigFile();
+    const server = new EasyServe(config) as EasyServe<C>;
+    for (const extension of config?.extensions || []) {
+      await server.installExtension(extension);
+    }
+
+    return server;
+  }
+  private constructor(config: C) {
     if (config) {
       this._config = config;
     }
@@ -124,11 +142,6 @@ export class EasyServer {
       this._config.hostname = Deno.env.get("SERVE_HOSTNAME");
     }
     this.fetch.bind(this);
-    this.initialized = new Promise((resolve) => {
-      loadEasyConfigFile().then(() => {
-        resolve();
-      });
-    });
   }
   /**
    * Adds an extension to the `EasyRequest` class.
@@ -226,11 +239,13 @@ export class EasyServer {
     return Object.fromEntries(config) as T;
   }
 
-  getExtension<T>(name: string) {
-    return this.getCustomProperty<T>(name);
+  getExtension<R extends ExtensionMap<C>, N extends keyof R>(
+    name: N,
+  ): R[N] {
+    return this._extensions.get(name as string) as R[N];
   }
   private setupExtensionConfig(
-    extension: ServerExtension<InstallFunction, ConfigDefinition>,
+    extension: EasyExtension<string, any>,
     config?: ExtensionConfig<any>,
   ) {
     this._extensionsConfig.set(extension.name, new Map());
@@ -297,18 +312,13 @@ export class EasyServer {
    * This is used to add custom functionality to the server.
    */
 
-  async installExtension<
+  private installExtension<
     C extends ConfigDefinition,
-    I extends InstallFunction,
-    T extends ServerExtension<I, C>,
+    E extends EasyExtension<string, any>,
   >(
-    extension: T extends ServerExtension<infer R, infer E>
-      ? ServerExtension<R, E>
-      : T,
-    config?: T extends ServerExtension<infer R, infer E> ? ExtensionConfig<E>
-      : ExtensionConfig<C>,
-  ): Promise<ExtractInstallReturn<T["install"]>> {
-    await this.initialized;
+    extension: E,
+    config?: ExtensionConfig<C>,
+  ): E extends EasyExtension<string, infer R> ? R : void {
     if (extension.requestExtensions) {
       for (const requestExtension of extension.requestExtensions) {
         this.extendRequest(requestExtension);
@@ -328,18 +338,16 @@ export class EasyServer {
     this.setupExtensionConfig(extension, config);
     this.addExtensionInfo(extension);
     const extensionObject = extension.install(this);
-    this.addCustomProperty({
-      key: extension.name,
-      description: extension.description,
-      value: extensionObject,
-    });
+    if (extensionObject) {
+      this._extensions.set(extension.name, extensionObject);
+    }
     return extensionObject;
   }
 
   /**
    * Adds information about the installed extension.
    */
-  private addExtensionInfo(extension: ServerExtension<any, any>) {
+  private addExtensionInfo(extension: EasyExtension<any, any>) {
     const middleware = extension.middleware?.map((m) => {
       return {
         name: m.name,

@@ -9,7 +9,8 @@ export const apiHandler: PathHandler = {
   handler: async (server, easyRequest, easyResponse) => {
     await easyRequest.loadBody();
     const data = easyRequest.body;
-    const api = server.getExtension<EasyAPI>("easyApi");
+    const api = server.getExtension("easyApi");
+    console.log(api);
     const action = api?.getAction(easyRequest.group, easyRequest.action);
     if (!action) {
       raiseServerException(

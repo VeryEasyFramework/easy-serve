@@ -6,6 +6,9 @@ import type {
   EasyAPIGroupDocs,
 } from "#extensions/api/src/types.ts";
 
+/**
+ * EasyAPI is a class that helps you create an API for your EasyServe server.
+ */
 export class EasyAPI {
   actionGroups: Map<string, EasyAPIGroup>;
 

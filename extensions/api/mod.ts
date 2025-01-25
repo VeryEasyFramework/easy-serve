@@ -1,5 +1,5 @@
 /**
- * API Extension for EasyServe
+ * API Extension for {@link EasyServe}
  * @module apiExtension
  */
 import { EasyExtension } from "#/easyExtension.ts";
@@ -17,7 +17,19 @@ export type {
 } from "#extensions/api/src/types.ts";
 
 /**
- * API Extension for EasyServe
+ * API Extension for {@link EasyServe}
+ *
+ * @example
+ * ```ts
+ * import { EasyServe } from "@vef/easy-serve";
+ * import apiExtension from "@vef/easy-serve/api";
+ *
+ * const server = await EasyServe.create({
+ *  extensions: [apiExtension],
+ * });
+ *
+ * server.run();
+ * ```
  */
 const apiExtension: EasyExtension<
   "easyApi",

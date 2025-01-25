@@ -4,6 +4,21 @@
  */
 import { EasyExtension } from "#/easyExtension.ts";
 
+/**
+ * CORS Extension for {@link EasyServe}
+ * @example
+ * ```ts
+ * import { EasyServe } from "@vef/easy-serve";
+ * import corsExtension from "@vef/easy-serve/cors";
+ *
+ * const server = await EasyServe.create({
+ *   extensions: [corsExtension],
+ * });
+ *
+ * server.run();
+ * ```
+ */
+
 const corsExtension: EasyExtension<"CORS", void> = EasyExtension.create(
   "CORS",
   {

@@ -1,7 +1,7 @@
 import type { HandlerResponse } from "#/extension/pathHandler.ts";
 import type { EasyResponse } from "#/easyResponse.ts";
 import type { EasyRequest } from "#/easyRequest.ts";
-import type { EasyServe } from "../../../src/easyServe.ts";
+import type { EasyServe } from "#/easyServe.ts";
 import type { EasyFieldType } from "@vef/types";
 
 /**

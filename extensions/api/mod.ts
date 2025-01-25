@@ -1,6 +1,18 @@
 /**
  * API Extension for {@link EasyServe}
  * @module apiExtension
+ *
+ *  * @example
+ * ```ts
+ * import { EasyServe } from "@vef/easy-serve";
+ * import apiExtension from "@vef/easy-serve/api";
+ *
+ * const server = await EasyServe.create({
+ *  extensions: [apiExtension],
+ * });
+ *
+ * server.run();
+ * ```
  */
 import { EasyExtension } from "#/easyExtension.ts";
 
@@ -18,18 +30,6 @@ export type {
 
 /**
  * API Extension for {@link EasyServe}
- *
- * @example
- * ```ts
- * import { EasyServe } from "@vef/easy-serve";
- * import apiExtension from "@vef/easy-serve/api";
- *
- * const server = await EasyServe.create({
- *  extensions: [apiExtension],
- * });
- *
- * server.run();
- * ```
  */
 const apiExtension: EasyExtension<
   "easyApi",

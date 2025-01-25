@@ -1,11 +1,6 @@
 /**
  * CORS Extension for {@link EasyServe}
  * @module corsExtension
- */
-import { EasyExtension } from "#/easyExtension.ts";
-
-/**
- * CORS Extension for {@link EasyServe}
  * @example
  * ```ts
  * import { EasyServe } from "@vef/easy-serve";
@@ -17,6 +12,11 @@ import { EasyExtension } from "#/easyExtension.ts";
  *
  * server.run();
  * ```
+ */
+import { EasyExtension } from "#/easyExtension.ts";
+
+/**
+ * CORS Extension for {@link EasyServe}
  */
 
 const corsExtension: EasyExtension<"CORS", void> = EasyExtension.create(

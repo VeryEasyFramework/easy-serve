@@ -2,15 +2,6 @@
  * Realtime Extension for {@link EasyServe}
  *
  * @module realtimeExtension
- */
-
-import { RealtimeHandler } from "#extensions/realtime/src/realtimeHandler.ts";
-import { realtimeMiddleware } from "#extensions/realtime/src/realtimeMiddleware.ts";
-import { EasyExtension } from "#/easyExtension.ts";
-
-/**
- * Realtime Extension for {@link EasyServe}
- *
  * @example
  * ```ts
  * import { EasyServe } from "@vef/easy-serve";
@@ -22,6 +13,14 @@ import { EasyExtension } from "#/easyExtension.ts";
  *
  * server.run();
  * ```
+ */
+
+import { RealtimeHandler } from "#extensions/realtime/src/realtimeHandler.ts";
+import { realtimeMiddleware } from "#extensions/realtime/src/realtimeMiddleware.ts";
+import { EasyExtension } from "#/easyExtension.ts";
+
+/**
+ * Realtime Extension for {@link EasyServe}
  */
 const realtimeExtension: EasyExtension<"realtime", RealtimeHandler> =
   EasyExtension.create("realtime", {

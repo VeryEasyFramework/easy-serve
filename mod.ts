@@ -4,22 +4,16 @@ import { EasyServe } from "#/easyServe.ts";
  * EasyServe
  * @module
  */
-export {
-  createServerExtension,
-  type ServerExtension,
-} from "#/extension/serverExtensionBak.ts";
 
 export { EasyServe } from "#/easyServe.ts";
 export { EasyRequest } from "#/easyRequest.ts";
 export { EasyResponse } from "#/easyResponse.ts";
+export { EasyExtension } from "#/easyExtension.ts";
 export {
   isServerException,
   raiseServerException,
   ServerException,
 } from "#/serverException.ts";
-export * from "#extensions/api/mod.ts";
-export * from "#extensions/cors/mod.ts";
-export * from "#extensions/realtime/mod.ts";
 export type { PathHandler } from "#/extension/pathHandler.ts";
 export {
   createServerMiddleware,

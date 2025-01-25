@@ -9,7 +9,7 @@ import type { ServeConfig } from "#/types.ts";
 import type { ConfigDefinition, ExtensionConfig } from "#/types.ts";
 import { loadEasyConfigFile } from "#/easyConfig/easyConfig.ts";
 import { easyLog } from "@vef/easy-log";
-import type EasyExtension from "#/easyExtension.ts";
+import type { EasyExtension } from "#/easyExtension.ts";
 
 /**
  * The main server class.

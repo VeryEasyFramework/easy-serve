@@ -1,5 +1,5 @@
 import type { ServerMiddleware } from "../mod.ts";
-import type EasyExtension from "#/easyExtension.ts";
+import type { EasyExtension } from "#/easyExtension.ts";
 
 /**
  * Configuration for EasyServe.

@@ -1,4 +1,4 @@
-import EasyExtension from "#/easyExtension.ts";
+import { EasyExtension } from "#/easyExtension.ts";
 
 /**
  * CORS Extension for {@link EasyServe}

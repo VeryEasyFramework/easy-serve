@@ -2,8 +2,8 @@ import type { ConfigDefinition } from "#/types.ts";
 import type { RequestExtension } from "#/extension/requestExtension.ts";
 import type { ServerMiddleware } from "#/extension/serverMiddleware.ts";
 import type { PathHandler } from "#/extension/pathHandler.ts";
-import { EasyServe } from "#/easyServe.ts";
-class EasyExtension<N extends string, R> {
+import type { EasyServe } from "#/easyServe.ts";
+export class EasyExtension<N extends string, R> {
   readonly name: N;
   envPrefix?: string;
   config?: ConfigDefinition;
@@ -48,5 +48,3 @@ class EasyExtension<N extends string, R> {
     this.install = options.install;
   }
 }
-
-export default EasyExtension;

@@ -6,7 +6,7 @@
 
 import { RealtimeHandler } from "#extensions/realtime/src/realtimeHandler.ts";
 import { realtimeMiddleware } from "#extensions/realtime/src/realtimeMiddleware.ts";
-import EasyExtension from "#/easyExtension.ts";
+import { EasyExtension } from "#/easyExtension.ts";
 
 const realtimeExtension: EasyExtension<"realtime", RealtimeHandler> =
   EasyExtension.create("realtime", {

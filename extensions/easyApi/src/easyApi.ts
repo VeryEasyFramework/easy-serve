@@ -4,7 +4,7 @@ import type {
   EasyAPIDocs,
   EasyAPIGroup,
   EasyAPIGroupDocs,
-} from "#extensions/api/src/types.ts";
+} from "#extensions/easyApi/src/types.ts";
 
 /**
  * EasyAPI is a class that provides the main interface for the EasyAPI extension for EasyServe.

@@ -1,11 +1,11 @@
 {
   "name": "@vef/easy-serve",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "exports": {
     ".": "./mod.ts",
     "./realtime": "./extensions/realtime/mod.ts",
     "./cors": "./extensions/cors/mod.ts",
-    "./api": "./extensions/api/mod.ts"
+    "./easyApi": "./extensions/easyApi/mod.ts"
   },
   "publish": {
     "exclude": [

@@ -1,14 +1,13 @@
 /**
  * API Extension for {@link EasyServe}
- * @module apiExtension
- *
- *  * @example
+ * @module easyApi
+ * @example
  * ```ts
  * import { EasyServe } from "@vef/easy-serve";
- * import apiExtension from "@vef/easy-serve/api";
+ * import easyApi from "@vef/easy-serve/easyApi";
  *
  * const server = await EasyServe.create({
- *  extensions: [apiExtension],
+ *  extensions: [easyApi],
  * });
  *
  * server.run();
@@ -16,22 +15,22 @@
  */
 import { EasyExtension } from "#/easyExtension.ts";
 
-import { apiHandler } from "#extensions/api/src/apiHandler.ts";
-import { EasyAPI } from "#extensions/api/src/easyApi.ts";
+import { apiHandler } from "#extensions/easyApi/src/apiHandler.ts";
+import { EasyAPI } from "#extensions/easyApi/src/easyApi.ts";
 
-export { EasyAPI } from "#extensions/api/src/easyApi.ts";
+export { EasyAPI } from "#extensions/easyApi/src/easyApi.ts";
 export type {
   EasyAPIAction,
   EasyAPIActionDocs,
   EasyAPIDocs,
   EasyAPIGroup,
   EasyAPIGroupDocs,
-} from "#extensions/api/src/types.ts";
+} from "./src/types.ts";
 
 /**
  * API Extension for {@link EasyServe}
  */
-const apiExtension: EasyExtension<
+const easyApi: EasyExtension<
   "easyApi",
   EasyAPI
 > = EasyExtension.create("easyApi", {
@@ -57,4 +56,4 @@ const apiExtension: EasyExtension<
   },
 });
 
-export default apiExtension;
+export default easyApi;

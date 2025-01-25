@@ -1,5 +1,8 @@
 import type { HandlerResponse } from "#/extension/pathHandler.ts";
 
+/**
+ * A class which simplifies creating responses to client requests.
+ */
 export class EasyResponse {
   _content?: string | Uint8Array;
   cookies: Record<string, string> = {};
@@ -31,7 +34,7 @@ export class EasyResponse {
     this.cookies[key] = "";
   }
 
-  setContent(content: HandlerResponse) {
+  setContent(content: HandlerResponse): void {
     switch (typeof content) {
       case "object":
         this._content = JSON.stringify(content);
@@ -50,7 +53,7 @@ export class EasyResponse {
     }
   }
 
-  setContentType(type: "json" | "html" | "text" | "xml" | "file") {
+  setContentType(type: "json" | "html" | "text" | "xml" | "file"): void {
     switch (type) {
       case "json":
         this._headers.set("Content-Type", "application/json");

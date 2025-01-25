@@ -4,15 +4,22 @@ import type { EasyRequest } from "#/easyRequest.ts";
 import type { EasyServe } from "../../../src/easyServe.ts";
 import type { EasyFieldType } from "@vef/types";
 
+/**
+ * The full documentation for an EasyAPI instance in JSON format.
+ */
 export interface EasyAPIDocs extends Record<string, unknown> {
   groups: EasyAPIGroupDocs[];
 }
 
+/**
+ * The documentation for an EasyAPI group in JSON format.
+ */
 export interface EasyAPIGroupDocs {
   groupName: string;
   description: string;
   actions: EasyAPIActionDocs[];
 }
+
 export interface DocsActionParam {
   paramName: string;
   required: boolean;

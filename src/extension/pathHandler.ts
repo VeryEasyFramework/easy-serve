@@ -2,6 +2,9 @@ import type { EasyServe } from "../easyServe.ts";
 import type { EasyResponse } from "#/easyResponse.ts";
 import type { EasyRequest } from "#/easyRequest.ts";
 
+/**
+ * A union of all possible responses from a PathHandler.
+ */
 export type HandlerResponse =
   | void
   | string

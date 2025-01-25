@@ -16,6 +16,9 @@ export type {
   EasyAPIGroupDocs,
 } from "#extensions/api/src/types.ts";
 
+/**
+ * API Extension for EasyServe
+ */
 const apiExtension: EasyExtension<
   "easyApi",
   EasyAPI

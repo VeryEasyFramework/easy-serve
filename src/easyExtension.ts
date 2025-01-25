@@ -3,6 +3,10 @@ import type { RequestExtension } from "#/extension/requestExtension.ts";
 import type { ServerMiddleware } from "#/extension/serverMiddleware.ts";
 import type { PathHandler } from "#/extension/pathHandler.ts";
 import type { EasyServe } from "#/easyServe.ts";
+
+/**
+ * An extension for EasyServe.
+ */
 export class EasyExtension<N extends string, R> {
   readonly name: N;
   envPrefix?: string;
@@ -12,6 +16,12 @@ export class EasyExtension<N extends string, R> {
   readonly middleware: ServerMiddleware[];
   readonly pathHandlers: PathHandler[];
   install: (server: EasyServe) => R;
+  /**
+   * Creates a new EasyExtension.
+   *
+   * @param name The name of the extension.
+   * @param options The options for the extension.
+   */
   static create<
     N extends string,
     I extends (server: EasyServe) => any,

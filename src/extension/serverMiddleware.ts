@@ -1,7 +1,11 @@
 import type { EasyRequest } from "#/easyRequest.ts";
 
 import type { EasyResponse } from "#/easyResponse.ts";
-import type { EasyServe } from "../easyServe.ts";
+import type { EasyServe } from "#/easyServe.ts";
+
+/**
+ * Middleware for EasyServe.
+ */
 export type ServerMiddleware = {
   /**
    * The name of the middleware.

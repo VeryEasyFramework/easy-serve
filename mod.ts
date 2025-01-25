@@ -1,12 +1,3 @@
-/**
- * `EasyServe` is used under the hood by `EasyApp` and handles the web server
- * setup, configuration and core functionality.
- *
- * It is designed as a standalone module that can be used as an easy to use
- * and extensible web server for any Deno project.
- *
- * @module EasyServe
- */
 import { EasyServe } from "#/easyServe.ts";
 
 export { EasyServe } from "#/easyServe.ts";

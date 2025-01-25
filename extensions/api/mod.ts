@@ -1,12 +1,11 @@
-import { EasyExtension } from "#/easyExtension.ts";
-
-import { apiHandler } from "#extensions/api/src/apiHandler.ts";
-import { EasyAPI } from "#extensions/api/src/easyApi.ts";
-
 /**
  * API Extension for EasyServe
  * @module apiExtension
  */
+import { EasyExtension } from "#/easyExtension.ts";
+
+import { apiHandler } from "#extensions/api/src/apiHandler.ts";
+import { EasyAPI } from "#extensions/api/src/easyApi.ts";
 
 export { EasyAPI } from "#extensions/api/src/easyApi.ts";
 export type {

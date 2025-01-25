@@ -1,10 +1,10 @@
-import { EasyExtension } from "#/easyExtension.ts";
-
 /**
  * CORS Extension for {@link EasyServe}
- * @module
+ * @module corsExtension
  */
-export const corsExtension: EasyExtension<"CORS", void> = EasyExtension.create(
+import { EasyExtension } from "#/easyExtension.ts";
+
+const corsExtension: EasyExtension<"CORS", void> = EasyExtension.create(
   "CORS",
   {
     description: "CORS Handler for EasyServe",

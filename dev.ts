@@ -5,7 +5,9 @@ import realtimeExtension from "#extensions/realtime/mod.ts";
 const server = await EasyServe.create({
   extensions: [apiExtension, corsExtension, realtimeExtension],
 });
-
+const server2 = await EasyServe.create({
+  extensions: [],
+});
 const api = server.getExtension("easyApi");
 api.addAction("api", {
   actionName: "getExtensions",

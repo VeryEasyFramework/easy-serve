@@ -1,8 +1,11 @@
 import EasyExtension from "#/easyExtension.ts";
-import EasyServe from "../../../mod.ts";
 import { apiHandler } from "./apiHandler.ts";
-import { EasyAPI } from "./easyApi.ts";
+import { EasyAPI } from "#extensions/api/src/easyApi.ts";
 
+/**
+ * API Extension for EasyServe
+ * @category Extensions
+ */
 export const apiExtension: EasyExtension<
   "easyApi",
   EasyAPI

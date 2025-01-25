@@ -1,9 +1,9 @@
-import { EasyServe } from "./src/easyServe.ts";
+import { EasyServe } from "#/easyServe.ts";
 
 export {
   createServerExtension,
   type ServerExtension,
-} from "./src/extension/serverExtensionBak.ts";
+} from "#/extension/serverExtensionBak.ts";
 
 export { EasyServe } from "./src/easyServe.ts";
 export { EasyRequest } from "#/easyRequest.ts";

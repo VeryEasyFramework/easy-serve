@@ -9,7 +9,7 @@ import type { ServeConfig } from "#/types.ts";
 import type { ConfigDefinition, ExtensionConfig } from "#/types.ts";
 import { loadEasyConfigFile } from "#/easyConfig/easyConfig.ts";
 import { easyLog } from "@vef/easy-log";
-import EasyExtension from "#/easyExtension.ts";
+import type EasyExtension from "#/easyExtension.ts";
 
 /**
  * The main server class.
@@ -17,12 +17,15 @@ import EasyExtension from "#/easyExtension.ts";
  *
  * @example
  * ```ts
- * import { EasyServer } from "@vef/easy-serve";
+ * import { EasyServe } from "#/easyServe.ts";
  *
- * const server = new EasyServer();
+ * const server = await EasyServe.create({
+ *   extensions: [apiExtension, corsExtension, realtimeExtension],
+ * });
  *
- * server.run();
+ * export default server;
  * ```
+ * @module
  */
 
 export class EasyServe<
@@ -115,6 +118,11 @@ export class EasyServe<
     return this._customProperties.get(key) as T;
   }
 
+  /**
+   * Creates a new EasyServe instance.
+   * @param config {ServeConfig} The configuration for the server
+   * @returns {Promise<EasyServe>} The EasyServe instance
+   */
   static async create<
     C extends ServeConfig,
   >(
@@ -231,7 +239,12 @@ export class EasyServe<
     return value;
   }
 
-  getExtensionConfig<T = Record<string, any>>(extension: string) {
+  /**
+   * Gets the configuration for a given extension.
+   *
+   * @param extension {string} The name of the extension
+   */
+  getExtensionConfig<T = Record<string, any>>(extension: string): T {
     const config = this._extensionsConfig.get(extension);
     if (config === undefined) {
       throw new Error(`Extension ${extension} not found`);
@@ -239,6 +252,11 @@ export class EasyServe<
     return Object.fromEntries(config) as T;
   }
 
+  /**
+   * Gets the extension object for a given extension.
+   *
+   * @param name {string} The name of the extension
+   */
   getExtension<R extends ExtensionMap<C>, N extends keyof R>(
     name: N,
   ): R[N] {

@@ -10,4 +10,9 @@ export type {
 } from "#extensions/api/src/types.ts";
 export { apiHandler } from "#extensions/api/src/apiHandler.ts";
 
+/**
+ * This module provides an API extension for EasyServe.
+ *
+ * @module extensions/api
+ */
 export default apiExtension;

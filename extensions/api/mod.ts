@@ -1,5 +1,12 @@
-import { apiExtension } from "#extensions/api/src/apiExtension.ts";
-export { apiExtension };
+import EasyExtension from "#/easyExtension.ts";
+import { EasyAPI } from "../../mod.ts";
+import { apiHandler } from "#extensions/api/src/apiHandler.ts";
+
+/**
+ * API Extension for EasyServe
+ * @module apiExtension
+ */
+
 export { EasyAPI } from "#extensions/api/src/easyApi.ts";
 export type {
   EasyAPIAction,
@@ -8,11 +15,31 @@ export type {
   EasyAPIGroup,
   EasyAPIGroupDocs,
 } from "#extensions/api/src/types.ts";
-export { apiHandler } from "#extensions/api/src/apiHandler.ts";
 
-/**
- * This module provides an API extension for EasyServe.
- *
- * @module extensions/api
- */
+const apiExtension: EasyExtension<
+  "easyApi",
+  EasyAPI
+> = EasyExtension.create("easyApi", {
+  description: "API handler for EasyServe",
+  pathHandlers: [apiHandler],
+  install: (_server) => {
+    const api = new EasyAPI();
+    api.addGroup({
+      groupName: "api",
+      description: "API",
+      actions: new Map(),
+    });
+    api.addAction("api", {
+      actionName: "getDocs",
+      description: "Get API documentation",
+      params: {},
+      handler: () => {
+        return api.docs;
+      },
+    });
+
+    return api;
+  },
+});
+
 export default apiExtension;

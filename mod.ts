@@ -1,11 +1,15 @@
 import { EasyServe } from "#/easyServe.ts";
 
+/**
+ * EasyServe
+ * @module
+ */
 export {
   createServerExtension,
   type ServerExtension,
 } from "#/extension/serverExtensionBak.ts";
 
-export { EasyServe } from "./src/easyServe.ts";
+export { EasyServe } from "#/easyServe.ts";
 export { EasyRequest } from "#/easyRequest.ts";
 export { EasyResponse } from "#/easyResponse.ts";
 export {
